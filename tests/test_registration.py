@@ -21,7 +21,7 @@ def driver():
 
 def test_all(driver):
     login = "admin@test"
-    password = 'greenwhite'
+    password = 'xxxx'
 
     login_page = LoginPage(driver)
     login_page.fill_registration_form(login, password)
@@ -42,7 +42,7 @@ def test_all(driver):
 
     workspace = 'Family Group'
     staff_unit = 'BetterCall'
-    client = '"SUXROB KAMOLOVICH NONLARI" OK'
+    client = 'debtor'
 
     create_orders_page = CreateOrderPage(driver)
     create_orders_page.check_page()

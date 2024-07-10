@@ -1,7 +1,9 @@
+# base_page.py
 import os
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 
 
 class BasePage:
@@ -10,22 +12,33 @@ class BasePage:
         self.wait = WebDriverWait(driver, 20)
 
     def find_element(self, locator):
-        return self.wait.until(EC.presence_of_element_located(locator))
+        try:
+            return self.wait.until(EC.presence_of_element_located(locator))
+        except TimeoutException:
+            self.driver.save_screenshot("element_not_found.png")
+            raise
 
     def click_element(self, locator):
-        element = self.wait.until(EC.element_to_be_clickable(locator))
-        element.click()
+        try:
+            element = self.wait.until(EC.element_to_be_clickable(locator))
+            element.click()
+        except TimeoutException:
+            self.driver.save_screenshot("element_not_clickable.png")
+            raise
 
     def input_text(self, locator, text):
-        element = self.wait.until(EC.visibility_of_element_located(locator))
-        self.driver.execute_script("arguments[0].value = '';", element)
-        element.send_keys(text)
+        try:
+            element = self.wait.until(EC.visibility_of_element_located(locator))
+            self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+            element.clear()
+            element.send_keys(text)
+        except TimeoutException:
+            self.driver.save_screenshot("element_not_visible.png")
+            raise
 
     def get_text(self, locator):
-        return self.find_element(locator).text
-
-    def take_screenshot(self, name):
-        # screenshots papkasini yaratish (agar mavjud bo'lmasa)
-        if not os.path.exists("screenshots"):
-            os.makedirs("screenshots")
-        self.driver.save_screenshot(f"screenshots/{name}.png")
+        try:
+            return self.find_element(locator).text
+        except TimeoutException:
+            self.driver.save_screenshot("element_text_not_found.png")
+            raise
