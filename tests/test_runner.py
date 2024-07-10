@@ -1,6 +1,6 @@
 import unittest
 from HtmlTestRunner import HTMLTestRunner
-from test_registration import test_registration
+from tests import test_registration
 
 if __name__ == "__main__":
     test_suite = unittest.TestLoader().loadTestsFromTestCase(test_registration)

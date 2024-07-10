@@ -14,14 +14,14 @@ from utils.driver_setup import setup_driver
 @pytest.fixture(scope="module")
 def driver():
     driver = setup_driver()
-    driver.get("https://qase.io/")
+    driver.get("https://smartup.online/")
     yield driver
     driver.quit()
 
 
 def test_all(driver):
-    login = "ksdsxbfgcjxj24653@gmail.com"
-    password = '01443354Hsdshsdghgdgf@'
+    login = "admin@test"
+    password = 'greenwhite'
 
     login_page = LoginPage(driver)
     login_page.fill_registration_form(login, password)
@@ -40,14 +40,24 @@ def test_all(driver):
     count_orders = orders_page.check_count()
     orders_page.click_create_button()
 
+    workspace = 'Family Group'
+    staff_unit = 'BetterCall'
+    client = '"SUXROB KAMOLOVICH NONLARI" OK'
+
     create_orders_page = CreateOrderPage(driver)
     create_orders_page.check_page()
-    create_orders_page.fill_form(order_date, workspace, staff_unit, client, project, contract)
+    create_orders_page.fill_form(workspace, staff_unit, client)
     create_orders_page.click_next_button()
 
+    name = 'Product 2'
+    qty = '3'
+
     goods_page = GoodsPage(driver)
-    goods_page.fill_form(name, qty, name_2, qty_2)
+    goods_page.fill_form(name, qty)
     goods_page.click_next_button()
+
+    payment_type = 'Наличные деньги'
+    status = 'Черновик'
 
     final_page = FinalPage(driver)
     final_page.fill_form(payment_type, status)

@@ -5,12 +5,12 @@ from .base_page import BasePage
 
 
 class FinalPage(BasePage):
-    PAYMENT_TYPE_INPUT = (By.XPATH, "//div/input[@placeholder='Логин@компания']")
-    STATUS_INPUT = (By.XPATH, "//div/input[@placeholder='Пароль']")
+    PAYMENT_TYPE_INPUT = (By.XPATH, "(//div/input[@placeholder='Поиск...'])[1]")
+    STATUS_INPUT = (By.XPATH, "(//div/[contains(text(), 'Черновик'])[3]")
     WAYBILL_INPUT = (By.XPATH, "//div/input[@placeholder='Пароль']")
 
-    SAVE_BUTTON = (By.XPATH, "//button/span[contains(text(), 'Sign up with email')]")
-    YES_BUTTON = (By.XPATH, "//button/span[contains(text(), 'Sign up with email')]")
+    SAVE_BUTTON = (By.XPATH, "//span/t[contains(text(), 'Сохранить')]")
+    YES_BUTTON = (By.XPATH, "//div/button[contains(text(), 'да')]")
 
     def fill_form(self, payment_type, status):
         self.input_text(self.PAYMENT_TYPE_INPUT, payment_type)

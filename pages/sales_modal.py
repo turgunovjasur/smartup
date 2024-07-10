@@ -3,11 +3,11 @@ from .base_page import BasePage
 
 
 class SalesModal(BasePage):
-    HEADER_TEXT = (By.XPATH, "//div/h1[contains(text(), 'All-in-one')]")
-    ORDERS_BUTTON = (By.XPATH, "//div/a[text()='SALES_BUTTON']")
+    HEADER_TEXT = (By.XPATH, "//h3/span[contains(text(), 'Продажа')]")
+    ORDERS_BUTTON = (By.XPATH, "//a/span[contains(text(), 'Заказы')]")
 
     def check_modal(self):
-        assert "All-in-one" in self.get_text(self.HEADER_TEXT), "Sahifa ochilmadi!"
+        assert "Продажа" in self.get_text(self.HEADER_TEXT), "Sales_modal sahifasi ochilmadi!"
 
     def click_button(self):
         self.click_element(self.ORDERS_BUTTON)
