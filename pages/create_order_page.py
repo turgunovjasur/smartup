@@ -1,6 +1,8 @@
 from telnetlib import EC
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+
 from .base_page import BasePage
 
 
@@ -19,7 +21,16 @@ class CreateOrderPage(BasePage):
         self.input_text(self.CLIENT, client)
 
     def check_page(self):
-        assert "Далее" in self.get_text(self.HEADER_TEXT), "Goods_page Sahifa ochilmadi!"
+        wait = WebDriverWait(self.driver, 20)  # 20 sekundgacha kutish
+        try:
+            element = wait.until(EC.presence_of_element_located(self.HEADER_TEXT))
+            assert "Далее" in element.text, "Create_order_page Sahifa ochilmadi!"
+        except:
+            self.take_screenshot("create_order_page_error")
+            raise
+
+    # def check_page(self):
+    #     assert "Далее" in self.get_text(self.HEADER_TEXT), "Create_order_page Sahifa ochilmadi!"
 
     def click_next_button(self):
         self.click_element(self.NEXT_BUTTON)
