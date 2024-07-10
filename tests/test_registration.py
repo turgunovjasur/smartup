@@ -21,7 +21,7 @@ def driver():
 
 def test_all(driver):
     login = "admin@test"
-    password = '.....'
+    password = 'greenwhite'
 
     login_page = LoginPage(driver)
     login_page.fill_registration_form(login, password)
@@ -67,8 +67,3 @@ def test_all(driver):
     check_orders_page.check_page()
     new_count_orders = check_orders_page.check_count()
     assert count_orders+1 == new_count_orders, "FAIL"
-
-
-
-
-
