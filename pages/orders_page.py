@@ -14,17 +14,8 @@ class OrdersPage(BasePage):
 
     # COUNT = (By.XPATH, "//div[contains(@class, 'sg-sub-row')]/div[contains(@class, 'sg-cell')]/t[contains(text(), 'Кол-во сделок')]/../text()")
 
-    # def check_page(self):
-    #     assert "Опросники" in self.get_text(self.HEADER_TEXT), "Order_page Sahifa ochilmadi!"
-
     def check_page(self):
-        wait = WebDriverWait(self.driver, 20)  # 20 sekundgacha kutish
-        try:
-            element = wait.until(EC.presence_of_element_located(self.HEADER_TEXT))
-            assert "Опросники" in element.text, "Order_page sahifa ochilmadi!"
-        except:
-            self.take_screenshot("Order_page_error")
-            raise
+        assert "Опросники" in self.get_text(self.HEADER_TEXT), "Order_page Sahifa ochilmadi!"
 
     def check_count(self):
         element = self.find_element(self.COUNT)

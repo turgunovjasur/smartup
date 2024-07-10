@@ -17,8 +17,8 @@ class BasePage:
         element.click()
 
     def input_text(self, locator, text):
-        element = self.find_element(locator)
-        element.clear()
+        element = self.wait.until(EC.visibility_of_element_located(locator))
+        self.driver.execute_script("arguments[0].value = '';", element)
         element.send_keys(text)
 
     def get_text(self, locator):
