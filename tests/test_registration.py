@@ -21,7 +21,7 @@ def driver():
 
 def test_all(driver):
     login = "admin@test"
-    password = 'greenwhite'
+    password = '.....'
 
     login_page = LoginPage(driver)
     login_page.fill_registration_form(login, password)
