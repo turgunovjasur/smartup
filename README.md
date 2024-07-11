@@ -18,6 +18,8 @@ Test skripti ilovada foydalanuvchi yo'nalishini simulyatsiya qiladi, jumladan ti
 1. Ushbu repozitoriyni klonlang
 2. Kerakli paketlarni o'rnating:
 3. Tegishli veb-brauzer drayverini o'rnatganingizga va u tizim PATH'ingizda ekanligiga ishonch hosil qiling
+4. pytest tests/test_registration.py --alluredir=reports/allure_results
+5. allure serve reports/allure_results   
 
 ## Loyiha tuzilishi
 
