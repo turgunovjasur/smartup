@@ -1,4 +1,3 @@
-# from telnetlib import EC
 from selenium.webdriver.support import expected_conditions as EC
 
 from selenium.webdriver.common.by import By
@@ -12,11 +11,6 @@ class OrdersPage(BasePage):
     CREATE_BUTTON = (By.XPATH, "//div/button[contains(text(), 'Создать')]")
     COUNT = (By.XPATH,
              "//div[contains(@class, 'sg-sub-row')]/div[contains(@class, 'sg-cell')][./t[contains(text(), 'Кол-во сделок')]]")
-
-    # COUNT = (By.XPATH, "//div[contains(@class, 'sg-sub-row')]/div[contains(@class, 'sg-cell')]/t[contains(text(), 'Кол-во сделок')]/../text()")
-
-    # def check_page(self):
-    #     assert "Опросники" in self.get_text(self.HEADER_TEXT), "Order_page Sahifa ochilmadi!"
 
     def check_page(self):
         wait = WebDriverWait(self.driver, 20)  # 20 sekundgacha kutish
