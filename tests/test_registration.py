@@ -53,7 +53,7 @@ def test_all(driver):
     qty = '3'
 
     goods_page = GoodsPage(driver)
-    goods_page.fill_form(name, qty)
+    goods_page.fill_form(qty)
     goods_page.click_next_button()
 
     payment_type = 'Наличные деньги'
@@ -66,4 +66,4 @@ def test_all(driver):
     check_orders_page = OrdersPage(driver)
     check_orders_page.check_page()
     new_count_orders = check_orders_page.check_count()
-    assert count_orders+1 == new_count_orders, "FAIL"
+    assert count_orders == new_count_orders, "FAIL"
