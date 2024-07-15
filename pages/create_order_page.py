@@ -1,11 +1,8 @@
-# from telnetlib import EC
 import time
 
 from selenium.webdriver.support import expected_conditions as EC
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-
 from .base_page import BasePage
 
 
@@ -36,9 +33,7 @@ class CreateOrderPage(BasePage):
             self.take_screenshot("create_order_page_error")
             raise
 
-    # def check_page(self):
-    #     assert "Далее" in self.get_text(self.HEADER_TEXT), "Create_order_page Sahifa ochilmadi!"
-
     def click_next_button(self):
+        time.sleep(2)
         self.click_element(self.NEXT_BUTTON)
 

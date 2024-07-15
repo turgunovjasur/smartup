@@ -1,15 +1,15 @@
 import os
-import time
 
+from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 
 
 class BasePage:
-    def __init__(self, driver):
+    def __init__(self, driver, timeout=40):
         self.driver = driver
-        self.wait = WebDriverWait(driver, 40)
+        self.wait = WebDriverWait(driver, timeout)
 
     def find_element(self, locator):
         return self.wait.until(EC.presence_of_element_located(locator))
@@ -20,42 +20,35 @@ class BasePage:
 
     def input_text(self, locator, text):
         element = self.wait.until(EC.visibility_of_element_located(locator))
-        self.driver.execute_script("arguments[0].value='';", element)
-        # self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
-        # time.sleep(1)
+        element.clear()
         element.send_keys(text)
-        self.driver.execute_script("arguments[0].click();", element)
-
+        element.click()
 
     def input_form_text(self, locator, text):
         element = self.wait.until(EC.visibility_of_element_located(locator))
-        self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
-        self.driver.execute_script("arguments[0].click();", element)
-        self.driver.execute_script(f"arguments[0].value='{text}';", element)
-
-        element.send_keys(Keys.ENTER)
+        actions = ActionChains(self.driver)  # Elementni ko'rinadigan joyga olib kelish
+        actions.move_to_element(element).perform()
+        element.clear()
+        element.send_keys(text, Keys.ENTER)
 
     def new_input(self, locator, text, elem):
         element = self.wait.until(EC.visibility_of_element_located(locator))
-        self.driver.execute_script("arguments[0].value='';", element)
+        element.clear()
         element.send_keys(text)
         self.click_element(elem)
 
     def new_wait_input(self, locator, elem):
         element = self.wait.until(EC.visibility_of_element_located(locator))
         element.send_keys(Keys.ENTER)
-        time.sleep(5)
+        self.wait.until(EC.element_to_be_clickable(elem))
         self.click_element(elem)
-
 
     def choice(self, locator, elem):
         element = self.wait.until(EC.visibility_of_element_located(locator))
         self.click_element(element)
-        time.sleep(2)
-        # e = self.wait.until(EC.visibility_of_element_located(elem))
-        self.click_element(elem)
 
-
+        second_element = self.wait.until(EC.visibility_of_element_located(elem))
+        self.click_element(second_element)
 
     def get_text(self, locator):
         return self.find_element(locator).text

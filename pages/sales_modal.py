@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from .base_page import BasePage
 
@@ -10,4 +12,5 @@ class SalesModal(BasePage):
         assert "Продажа" in self.get_text(self.HEADER_TEXT), "Sales_modal sahifasi ochilmadi!"
 
     def click_button(self):
+        time.sleep(2)
         self.click_element(self.ORDERS_BUTTON)

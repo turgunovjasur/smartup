@@ -1,4 +1,4 @@
-import random
+import time
 
 import pytest
 from pages.login_page import LoginPage
@@ -21,7 +21,7 @@ def driver():
 
 def test_all(driver):
     login = "admin@test"
-    password = 'xxxx'
+    password = 'greenwhite'
 
     login_page = LoginPage(driver)
     login_page.fill_registration_form(login, password)
@@ -37,7 +37,9 @@ def test_all(driver):
 
     orders_page = OrdersPage(driver)
     orders_page.check_page()
+    time.sleep(5)
     count_orders = orders_page.check_count()
+    print(f"Boshlang'ich soni: {count_orders}")
     orders_page.click_create_button()
 
     workspace = 'Family Group'
@@ -63,7 +65,19 @@ def test_all(driver):
     final_page.fill_form(payment_type, status)
     final_page.click_save_button()
 
+    time.sleep(10)
+    driver.refresh()
+    time.sleep(10)
+
     check_orders_page = OrdersPage(driver)
     check_orders_page.check_page()
+    time.sleep(5)
     new_count_orders = check_orders_page.check_count()
-    assert count_orders == new_count_orders, "FAIL"
+    print(f"Yangi soni: {new_count_orders}")
+
+    try:
+        assert new_count_orders == count_orders + 1, f"Xatolik: Kutilgan son {count_orders + 1}, ammo haqiqiy son {new_count_orders}"
+        print("\033[92mMahsulot muvaffaqiyatli qo'shildi\033[0m")  # Yashil rangda xabar
+    except AssertionError as e:
+        print(f"\033[91m{str(e)}\033[0m")  # Qizil rangda xato xabari
+        raise  # Xatoni qayta ko'tarish

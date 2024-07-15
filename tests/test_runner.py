@@ -9,7 +9,7 @@ if __name__ == "__main__":
     with open(report_path, "w", encoding="utf-8") as report_file:
         runner = HTMLTestRunner(
             stream=report_file,
-            title="Smartup Registration Test Report",
-            description="Test results for registration process"
+            title="Smartup",
+            description="Test results for the registration process and product warehouse"
         )
         runner.run(test_suite)
