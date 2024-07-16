@@ -12,7 +12,7 @@ from utils.driver_setup import driver
 
 def test_all(driver):
     login = "admin@test"
-    password = 'xxxx'
+    password = 'greenwhite'
 
     login_page = LoginPage(driver)
     login_page.fill_registration_form(login, password)
