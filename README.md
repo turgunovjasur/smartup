@@ -11,15 +11,13 @@ Test skripti ilovada foydalanuvchi yo'nalishini simulyatsiya qiladi, jumladan ti
 - Python 3.x
 - Pytest
 - Selenium WebDriver
-- Veb-brauzer drayveri (masalan, ChromeDriver)
+- Veb-brauzer drayveri (masalan: ChromeDriver, Firefox)
 
 ## O'rnatish
 
 1. Ushbu repozitoriyni klonlang
 2. Kerakli paketlarni o'rnating:
 3. Tegishli veb-brauzer drayverini o'rnatganingizga va u tizim PATH'ingizda ekanligiga ishonch hosil qiling
-4. pytest tests/test_registration.py --alluredir=reports/allure_results
-5. allure serve reports/allure_results   
 
 ## Loyiha tuzilishi
 
@@ -30,6 +28,10 @@ Test skripti ilovada foydalanuvchi yo'nalishini simulyatsiya qiladi, jumladan ti
 ## Testlarni ishga tushirish
 
 Testlarni ishga tushirish uchun loyihaning asosiy katalogida quyidagi buyruqni ishga tushiring:
+1. pytest tests/test_registration.py --alluredir=reports/allure_results
+2. allure serve reports/allure_results 
+3. pytest -k "chrome" -> Chrome bilan
+4. pytest -k "firefox" -> Firefox bilan
 
 ## Test jarayoni
 

@@ -1,6 +1,5 @@
 import time
 
-import pytest
 from pages.login_page import LoginPage
 from pages.dashboart_page import DashboartPage
 from pages.sales_modal import SalesModal
@@ -8,20 +7,12 @@ from pages.orders_page import OrdersPage
 from pages.goods_page import GoodsPage
 from pages.final_page import FinalPage
 from pages.create_order_page import CreateOrderPage
-from utils.driver_setup import setup_driver
-
-
-@pytest.fixture(scope="module")
-def driver():
-    driver = setup_driver()
-    driver.get("https://smartup.online/")
-    yield driver
-    driver.quit()
+from utils.driver_setup import driver
 
 
 def test_all(driver):
     login = "admin@test"
-    password = 'greenwhite'
+    password = 'xxxx'
 
     login_page = LoginPage(driver)
     login_page.fill_registration_form(login, password)
@@ -65,9 +56,9 @@ def test_all(driver):
     final_page.fill_form(payment_type, status)
     final_page.click_save_button()
 
-    time.sleep(10)
+    time.sleep(5)
     driver.refresh()
-    time.sleep(10)
+    time.sleep(5)
 
     check_orders_page = OrdersPage(driver)
     check_orders_page.check_page()

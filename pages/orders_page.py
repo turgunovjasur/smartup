@@ -10,7 +10,6 @@ class OrdersPage(BasePage):
     HEADER_TEXT = (By.XPATH, "//ul/li/a[contains(text(), 'Опросники')]")
     CREATE_BUTTON = (By.XPATH, "//div/button[contains(text(), 'Создать')]")
     COUNT = (By.XPATH, "//div[contains(@class, 'sg-cell') and contains(@class, 'col-sm-4') and contains(@class, 'ng-binding')]")
-    # COUNT = (By.XPATH, "//div[contains(@class, 'sg-sub-row')]/div[contains(@class, 'sg-cell')][./t[contains(text(), 'Кол-во сделок')]]")
 
     def check_page(self):
         wait = WebDriverWait(self.driver, 20)  # 20 sekundgacha kutish

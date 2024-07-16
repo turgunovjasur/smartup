@@ -1,7 +1,4 @@
 import time
-
-from selenium.webdriver import Keys
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from .base_page import BasePage
 
@@ -14,6 +11,7 @@ class GoodsPage(BasePage):
 
     def fill_form(self, qty):
         self.new_wait_input(self.NAME_INPUT, self.NAME_ELEM)
+        time.sleep(5)
         self.input_text(self.QTY_INPUT, qty)
 
     def click_next_button(self):

@@ -1,14 +1,5 @@
-import pytest
 from pages.login_page import LoginPage
-from utils.driver_setup import setup_driver
-
-
-@pytest.fixture(scope="function")
-def driver():
-    driver = setup_driver()
-    driver.get("https://smartup.online/")
-    yield driver
-    driver.quit()
+from utils.driver_setup import driver
 
 
 def run_test(driver, test_name, email, password, expect_success=False):
