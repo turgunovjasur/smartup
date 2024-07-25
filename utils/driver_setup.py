@@ -8,7 +8,7 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 def driver(request):
     if request.param == "chrome":
         service = ChromeService(
-            executable_path='C:\\Users\\jasur.turgunov\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe')
+            executable_path='C:\\Users\\jasur.turgunov\\Downloads\\chromedriver-win64 (1)\\chromedriver-win64\\chromedriver.exe')
         options = webdriver.ChromeOptions()
         driver = webdriver.Chrome(service=service, options=options)
     # elif request.param == "firefox":

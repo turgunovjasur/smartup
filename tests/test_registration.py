@@ -42,7 +42,7 @@ def test_all(driver):
     create_orders_page.fill_form(workspace, staff_unit, client)
     create_orders_page.click_next_button()
 
-    # name = 'Coca-Cola 1.5L / Coca-Cola Uzbekistan / Узбекистан'
+    name = 'Coca-Cola 1.5L / Coca-Cola Uzbekistan / Узбекистан'
     qty = '3'
 
     goods_page = GoodsPage(driver)

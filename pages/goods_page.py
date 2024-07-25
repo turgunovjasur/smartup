@@ -9,7 +9,6 @@ from .base_page import BasePage
 class GoodsPage(BasePage):
     HEADER_TEXT = (By.XPATH, "//div/h3/t[contains(text(), 'ТМЦ')]")
 
-
     NAME_INPUT = (By.XPATH, "(//div/input[@placeholder='Поиск...'])[7]")
     # NAME_ELEM = (By.XPATH, '//*[@id="inventory_goods_219"]/div[2]/b-pg-grid/div/div/div[1]/div[2]/div/div[1]/div/b-input/div/div[2]/div[2]/div[1]/div/div[1]')
     NAME_ELEM = (By.XPATH, "(//div[@class = 'col-sm-12 ng-binding'])[1]")
@@ -26,9 +25,9 @@ class GoodsPage(BasePage):
             self.take_screenshot("goods_pagee_error")
             raise
 
-    def fill_form(self, name_input, qty):
-        self.new_input(self.NAME_INPUT, name_input, self.NAME_ELEM)
-        time.sleep(2)
+    def fill_form(self, qty):
+        self.new_wait_input(self.NAME_INPUT, self.NAME_ELEM)
+        time.sleep(5)
         self.input_form_text(self.QTY_INPUT, qty)
 
     def click_next_button(self):
