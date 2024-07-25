@@ -7,7 +7,7 @@ from selenium.webdriver.common.keys import Keys
 
 
 class BasePage:
-    def __init__(self, driver, timeout=40):
+    def __init__(self, driver, timeout=10):
         self.driver = driver
         self.wait = WebDriverWait(driver, timeout)
 
@@ -29,7 +29,8 @@ class BasePage:
         actions = ActionChains(self.driver)  # Elementni ko'rinadigan joyga olib kelish
         actions.move_to_element(element).perform()
         element.clear()
-        element.send_keys(text, Keys.ENTER)
+        element.send_keys(text)
+        element.send_keys(Keys.ENTER)
 
     def new_input(self, locator, text, elem):
         element = self.wait.until(EC.visibility_of_element_located(locator))

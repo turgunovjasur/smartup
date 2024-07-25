@@ -12,6 +12,7 @@ from .dashboart_page import DashboartPage
 class LoginPage(BasePage):
     LOGIN_INPUT = (By.XPATH, "//div/input[@placeholder='Логин@компания']")
     PASSWORD_INPUT = (By.XPATH, "//div/input[@placeholder='Пароль']")
+
     SIGN_UP_BUTTON = (By.XPATH, "//div/button[contains(text(), 'Войти')]")
 
     def fill_registration_form(self, email, password):
